@@ -75,20 +75,20 @@ if "" == "%v%" (set v=%default%)
 @echo %cd%
 @echo %v%
 if not exist %cd%\v%v% (
-    @echo 在 gvm 列表中找不到，正在安装...
+	@echo 在 gvm 列表中找不到，正在安装...
 	rem if not exist %cd%\go%v%.windows-amd64.msi (
 	if not exist %cd%\go%v%.windows-amd64.zip (
-	   @echo 在 gvm 列表中找不到，正在下载...
-	   rem cscript download.vbs https://dl.google.com/go/go%v%.windows-amd64.msi %cd%\go%v%.windows-amd64.msi
-	   cscript download.vbs https://dl.google.com/go/go%v%.windows-amd64.zip %cd%\go%v%.windows-amd64.zip
-	   @echo 下载完成，正在安装...
+		@echo 在 gvm 列表中找不到，正在下载...
+		rem cscript download.vbs https://dl.google.com/go/go%v%.windows-amd64.msi %cd%\go%v%.windows-amd64.msi
+		cscript download.vbs https://dl.google.com/go/go%v%.windows-amd64.zip %cd%\go%v%.windows-amd64.zip
+		@echo 下载完成，正在安装...
 	)
 	rem msiexec /a %cd%\go%v%.windows-amd64.msi /quiet TARGETDIR="%cd%\v%v%" /qn	
 	7z x -ov%v% go%v%.windows-amd64.zip
 	7z x -o%cd%\v%v%\go %cd%\mingw64.zip
 	rem move %cd%\v%v%\go %cd%\v%v%
 ) else (
-  @echo 已存在 gvm 列表，正在切换...
+	@echo 已存在 gvm 列表，正在切换...
 )
 rd "D:\Program\Go"
 mklink /d "D:\Program\Go" %cd%\v%v%\go
